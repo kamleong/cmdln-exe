@@ -1,3 +1,14 @@
+/*
+  CMDLN - All Rights Reserved. Copyright (C) 2010-2013 Lai KamLeong
+  Inspired by Bayden's SlickRun [http://www.bayden.com/slickrun/]
+  Re-using some sample codes at
+  http://www.rohitab.com/discuss/topic/34879-getting-text-from-edit-box/
+  compile with MinGW/gcc/g++:
+  g++.exe -static-libgcc -mwindows cmdln.cpp -lwininet -lpsapi -o cmdln.exe
+  
+  Dec-2016: porting to C# / .Net ....
+*/
+
 // [ https://msdn.microsoft.com/en-us/library/system.windows.forms.control.wndproc(v=vs.110).aspx ]
 
 using System;
