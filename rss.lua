@@ -1,4 +1,5 @@
 #!/usr/bin/env lua
+
 local function toLocalTime(s)
   -- s = "Sat, 29 Oct 1994 19:43:31 GMT"
   local p = "%a+, (%d+) (%a+) (%d+) (%d+):(%d+):(%d+) *(%S*)"
