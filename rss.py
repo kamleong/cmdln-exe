@@ -30,7 +30,7 @@ for p in root.findall('.//item'):
   i = i + 1
   pubDate = p.find('pubDate').text
   #print(pubDate) ; break;
-  tzFormat = '%z' if re.search('\+\d{4}$', pubDate) else '%Z'
+  tzFormat = '%z' if re.search('[+-]\d{2}:?\d{2}$', pubDate) else '%Z'
   pubDate = datetime.strptime(pubDate, '%a, %d %b %Y %H:%M:%S '+tzFormat).astimezone(tz)
   #print(pubDate) ; break;
   rssPubDate[i] = pubDate
