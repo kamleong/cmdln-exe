@@ -8,13 +8,16 @@ echo ""
 cat << EOT
  <form>
    <script language="JavaScript">
-     var timeout_in_miliseconds = ${refresh_interval} * 1000;
+     var timeoutID = 0, timeout_in_miliseconds = ${refresh_interval} * 1000;
      if ( timeout_in_miliseconds > 0 ) {
-       var timeoutID = setTimeout("reloadThisPage()", timeout_in_miliseconds);
+       timeoutID = setTimeout("reloadThisPage()", timeout_in_miliseconds);
      }
      function reloadThisPage() {
        window.top.location.reload(); // mainForm.submit();
-       if ( timeout_in_miliseconds > 0 ) setTimeout("reloadThisPage()", timeout_in_miliseconds);
+     }
+     function stopAutoRefresh() {
+       clearTimeout(timeoutID);
+       document.getElementById("autoRefreshDIV").innerHTML = "";
      }
    </script>
    <SPAN id=autoRefreshDIV style="text-align:right">
@@ -26,6 +29,7 @@ cat << EOT
      </B>
      &nbsp; &nbsp;
      [<A class=href onClick="reloadThisPage()">refresh</A>]
+     [<A class=href onClick="stopAutoRefresh()">cancel</A>]
     </SPAN>
     <small><small>$(date)</small></small>
     &nbsp; &nbsp;
