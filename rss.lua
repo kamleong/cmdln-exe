@@ -63,6 +63,7 @@ local function get_url_content(url)
   end
 end
 
+local opt = (#arg>1) and arg[2] or ""
 local url = (#arg>0) and arg[1] or "https://news.google.com/rss?gl=MY"
 local xml = get_url_content(url) -- ; print(xml) ; os.exit()
 
@@ -90,6 +91,14 @@ print("lastPubDate: " .. os.date("%c",items[keys[1]].pubDate))
 local i = 0 ; y = y-2
 for _, k in ipairs(keys) do
   i = i + 1
-  print(">" .. string.sub(items[k].title, 1, x-1))
-  if i >= y then break end
+  if opt=="HTML" then
+    print(
+      "<li style='list-style-type:none;padding-left:15px;text-indent:-15px;' xonclick=\"window.open('" .. items[k].link .. "')\">"
+      .. "<a target='_blank' href='" .. items[k].link .. "'><small><small>&gt;</small></small></a> "
+      .. items[k].title
+    )
+  else
+    print(">" .. string.sub(items[k].title, 1, x-1))
+    if i >= y then break end
+  end
 end
