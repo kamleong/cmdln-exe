@@ -29,6 +29,8 @@ i = 0; rssPubDate = {}; rssTitle = {}; rssUrl = {}
 for p in root.findall('.//item'):
   i = i + 1
   pubDate = p.find('pubDate').text
+  pubDate = re.sub(r" GMT$", " +0000", pubDate) ## for better compatibiity
+  pubDate = re.sub(r":(\d{2})$", r"\1", pubDate) ## for better compatibiity
   #print(pubDate) ; break;
   tzFormat = '%z' if re.search('[+-]\d{2}:?\d{2}$', pubDate) else '%Z'
   pubDate = datetime.strptime(pubDate, '%a, %d %b %Y %H:%M:%S '+tzFormat).astimezone(tz)
